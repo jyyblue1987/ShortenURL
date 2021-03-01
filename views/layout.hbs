@@ -1,42 +1,23 @@
 <html>
 <head>
+    <title>URL Shortener</title>
     <link rel="stylesheet" href="css/main.css">
-{{!-- add grey around the links --}}
-<style>
-    a:link, a:visited {
-    background-color: #808080;
-    color: black;
-    padding: 10px 15px;
-    text-align: center;
-    text-decoration: none;
-    font-family: Papyrus;
-    display: inline-block;
-    }
-
-    a:hover, a:active {
-    background-color: grey;
-    }
-</style>
-     
-     
 </head>
 <body>
-   
     <div class="main-area">
         <header>
-            <img src="img/header.png">
+            <img src="img/header.png"/>
             <h1>URL Shortener</h1>
         </header>
-        <a
-             href="/">TRENDING URLS
-        </a>
-        <a
-             href="/shorten">SHORTEN URL
-        </a>
-        <a
-             href="/expand">EXPAND URL
-        </a>
-        {{{content}}}
+        <div class="changing-content-area">
+            <a href="/">TRENDING URLS
+            </a>
+            <a href="/shorten">SHORTEN URL
+            </a>
+            <a href="/expand">EXPAND URL
+            </a>
+            {{{content}}}
+        </div>
     </div>
 </body>
 </html>
