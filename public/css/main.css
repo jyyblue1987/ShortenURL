@@ -53,12 +53,36 @@ div .title {
 }
 
 form {
-    width: 50%;
-    margin: auto;
-}
-
-form input {
     width: 90%;
     margin: auto;
 }
 
+form input, button {
+    width: 100%;
+}
+
+form input {
+    height: 30px;
+    background-color: e3eaed;
+    border: none;
+}
+
+.form-container {
+    background-color: f1f4f6;
+    padding: 20px;
+    width: 50%;
+    margin: auto;
+    border-radius: 5px;
+}
+
+button {
+    color: white;
+    background-color: 41c065;
+    height: 30;
+    border: none; 
+    border-radius: 3px;
+}
+
+.trending-list a {
+    color: 69c9e3;
+}

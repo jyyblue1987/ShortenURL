@@ -84,7 +84,7 @@ app.post('/shorten', (req, res) => {
   if( !myUrlShortener )
   {
     myUrlShortener = new urlShortener(url);
-    urlShortener.shorten();
+    myUrlShortener.shorten();
   }
 
   var shorten_url = 'Invalid URL';
