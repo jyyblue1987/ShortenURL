@@ -1,0 +1,42 @@
+<div>
+    <h2 class="title">Shorten URLs</h2>
+    <form id="shorten-form">
+        <label for="short_url">Enter a long URL below</label><br>
+        <input id="short_url" type="text" name="short_url" /><br><br>
+        <button id="btn-submit">
+            Shorten URL
+        </button>
+    </form>
+</div>
+
+<div>
+    <p id="result"></p>
+</div>
+
+<script>
+    function shortURLEvent() {
+        $('#btn-submit').click(function(e){  
+            e.preventDefault();
+            var short_url = document.getElementById('short_url').value;
+
+            $.ajax({ 
+                url: '/shorten',
+                type: 'POST',
+                cache: false, 
+                data: { url: short_url }, 
+                success: function(data){
+                    $('#result').html('The Short URL is: ' + data.shorten_url);
+                }
+                , error: function(jqXHR, textStatus, err){
+                    alert('text status '+textStatus+', err '+err)
+                }
+            });
+        });
+            
+    }
+
+    (function() {
+        shortURLEvent();
+    })();
+
+</script>

@@ -5,9 +5,14 @@ var url = require('url');
 
 class URLShortener {    
     constructor (originalURL) {
+        this.protocol = this.protocol;
         this.originalURL = originalURL;
         this.shortURL = '';
         this.clickCount = 0;
+
+        url = new URL(this.originalURL);
+        this.protocol = url.protocol;
+        this.domain = this.domain;
     }
 
 	// Returns Short URL
@@ -23,14 +28,13 @@ class URLShortener {
         });
         
         this.shortURL = shortener.shorten(this.originalURL).target;        
+
+        return this.shortURL;
     }
 
 	// Returns Expanded URL
     expand() {
-        const myURL = new URL(this.originalURL);
-        let protocol = myURL.protocol;
-
-        return myURL;
+        return this.originalURL;
     }
 
 	// Updates Click count

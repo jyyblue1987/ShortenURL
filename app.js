@@ -47,29 +47,50 @@ app.get('/', (req, res) => {
   list = urlData.sort(function(a, b) {
     return b.clickCount - a.clickCount;
   });
-
-  // var data = [];
-  // for(i = 0; i < list.length; i++)
-  // {
-  //   var item = list[i];
-  //   var row = {};
-  //   row.originalURL = item.originalURL;
-  //   row.shortURL = item.shortURL;
-  //   row.clickCount = item.clickCount;
-
-  //   data.push(row);
-  // }
   
   const trendingPageBody = template({list: list});
   res.render('layout', {content: trendingPageBody});
 });
 
+
+app.get('/shorten', (req, res) => {
+  const trendingTemplate = fs.readFileSync('views/shorten.hbs', {encoding: 'utf8'});
+  const template = hbs.compile(trendingTemplate);
+
+  const trendingPageBody = template({});
+  res.render('layout', {content: trendingPageBody});
+});
+
+
+app.post('/shorten', (req, res) => {
+  var url = req.body.url;
+
+  var myUrlShortener = undefined;
+  urlData.forEach(function(item) {
+    if( item.originalURL == url )
+      myUrlShortener = item;
+  });
+  
+  if( !myUrlShortener )
+    myUrlShortener = new urlShortener(url);
+
+  var shorten_url = 'Invalid URL';
+  try {
+    var shorten_url = myUrlShortener.shorten();
+    urlData.push(myUrlShortener);
+  } catch(e) {
+
+  }
+
+  var data = {'shorten_url' : shorten_url};
+  res.send(data);
+});
+
+
 app.use(express.static('public'));
 
 app.listen(port, () => {
-  const myUrlShortener = new urlShortener('http://www.bearconservation.org.uk/wp-content/uploads/2017/08/Kodiak_brown_bear_FWS_18383.jpg');
-  console.log('shortened URL: ', myUrlShortener.shorten());
-  console.log('expanded URL:', myUrlShortener.expand())
+
   
   
   console.log('Server started; type CTRL+C to shut down ')

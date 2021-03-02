@@ -47,3 +47,18 @@ body {
 .changing-content-area {
     padding: 40px;
 }
+
+div .title {
+    text-align: center;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+}
+
+form input {
+    width: 90%;
+    margin: auto;
+}
+
