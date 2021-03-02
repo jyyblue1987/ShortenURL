@@ -26,6 +26,7 @@
                 data: { url: expand_url }, 
                 success: function(data){
                     $('#result').html('The long URL is: ' + data.expand_url);
+                    $('#expand_url').val('');
                 }
                 , error: function(jqXHR, textStatus, err){
                     alert('text status '+textStatus+', err '+err)

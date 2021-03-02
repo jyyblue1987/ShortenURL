@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded());
 app.use(function debugMiddleware(req, res, next) {
   console.log('Method: ' + req.method);
   console.log('Path: ' + req.originalUrl);
-  console.log('Query String: ' + JSON.stringify(req.query));
+  console.log('Query String: ' + JSON.stringify(req.body));
   next();
 });
 
@@ -82,11 +82,14 @@ app.post('/shorten', (req, res) => {
   });
   
   if( !myUrlShortener )
+  {
     myUrlShortener = new urlShortener(url);
+    urlShortener.shorten();
+  }
 
   var shorten_url = 'Invalid URL';
   try {
-    var shorten_url = myUrlShortener.shorten();
+    var shorten_url = myUrlShortener.shortURL;
     urlData.push(myUrlShortener);
   } catch(e) {
 
@@ -107,7 +110,10 @@ app.post('/expand', (req, res) => {
   
   var expand_url = 'Invalid URL';
   if( myUrlShortener )
+  {
     expand_url = myUrlShortener.originalURL;
+    myUrlShortener.updateClickCount();
+  }
   
   var data = {'expand_url' : expand_url};
   res.send(data);

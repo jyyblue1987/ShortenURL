@@ -26,6 +26,7 @@
                 data: { url: short_url }, 
                 success: function(data){
                     $('#result').html('The Short URL is: ' + data.shorten_url);
+                    $('#short_url').val('');
                 }
                 , error: function(jqXHR, textStatus, err){
                     alert('text status '+textStatus+', err '+err)
