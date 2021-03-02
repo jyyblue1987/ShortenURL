@@ -62,6 +62,16 @@ app.get('/shorten', (req, res) => {
 });
 
 
+app.get('/expand', (req, res) => {
+  const trendingTemplate = fs.readFileSync('views/expand.hbs', {encoding: 'utf8'});
+  const template = hbs.compile(trendingTemplate);
+
+  const trendingPageBody = template({});
+  res.render('layout', {content: trendingPageBody});
+});
+
+
+
 app.post('/shorten', (req, res) => {
   var url = req.body.url;
 
@@ -85,6 +95,24 @@ app.post('/shorten', (req, res) => {
   var data = {'shorten_url' : shorten_url};
   res.send(data);
 });
+
+app.post('/expand', (req, res) => {
+  var url = req.body.url;
+
+  var myUrlShortener = undefined;
+  urlData.forEach(function(item) {
+    if( item.shortURL == url )
+      myUrlShortener = item;
+  });
+  
+  var expand_url = 'Invalid URL';
+  if( myUrlShortener )
+    expand_url = myUrlShortener.originalURL;
+  
+  var data = {'expand_url' : expand_url};
+  res.send(data);
+});
+
 
 
 app.use(express.static('public'));
