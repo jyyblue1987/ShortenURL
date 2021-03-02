@@ -30,7 +30,7 @@ body {
     font-family: Papyrus;
 }
 
-a:link, a:visited {
+.nav a:link, .nav a:visited {
     background-color: #808080;
     color: black;
     padding: 5px 15px;
@@ -40,7 +40,7 @@ a:link, a:visited {
     display: inline-block;
 }
 
-a:hover, a:active {
+.nav a:hover, .nav a:active {
     background-color: grey;
 }
 

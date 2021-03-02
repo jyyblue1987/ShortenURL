@@ -3,9 +3,10 @@ const Shortener = require("@studiohyperdrive/shortener");
 //add node module
 var url = require('url');
 
-class URLShortener {
+class URLShortener {    
     constructor (originalURL) {
         this.originalURL = originalURL;
+        this.shortURL = '';
         this.clickCount = 0;
     }
 
@@ -21,7 +22,7 @@ class URLShortener {
             alphabet: "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
         });
         
-        return shortener.shorten(this.originalURL).target;
+        this.shortURL = shortener.shorten(this.originalURL).target;        
     }
 
 	// Returns Expanded URL
@@ -34,6 +35,7 @@ class URLShortener {
 
 	// Updates Click count
     updateClickCount() {
+        this.clickCount++;
     }
 }
 
