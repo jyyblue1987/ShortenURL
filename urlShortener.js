@@ -28,6 +28,8 @@ class URLShortener {
     expand() {
         const myURL = new URL(this.originalURL);
         let protocol = myURL.protocol;
+
+        return myURL;
     }
 
 	// Updates Click count

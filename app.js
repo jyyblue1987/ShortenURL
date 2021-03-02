@@ -41,6 +41,7 @@ app.use(express.static('public'));
 app.listen(port, () => {
   const myUrlShortener = new urlShortener('http://www.bearconservation.org.uk/wp-content/uploads/2017/08/Kodiak_brown_bear_FWS_18383.jpg');
   console.log('shortened URL: ', myUrlShortener.shorten());
+  console.log('expanded URL:', myUrlShortener.expand())
   
   
   console.log('Server started; type CTRL+C to shut down ')
